@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8">
+<script>try{var t=localStorage.getItem("av-theme")||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");document.documentElement.dataset.theme=t}catch(e){document.documentElement.dataset.theme="dark"}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Studio Video Affiliate</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060f12;--ink:#eef4f1;--mut:#8aa097;--line:rgba(255,255,255,.1);--glass:rgba(255,255,255,.055);--gold:#ffd27a;--peach:#ff9d72;--inp:rgba(0,0,0,.28);--goldtxt:#ffd27a;color-scheme:dark}
+:root[data-theme="light"]{--bg:#f3f7f5;--ink:#10201b;--mut:#566b62;--line:rgba(10,40,30,.15);--glass:rgba(255,255,255,.75);--gold:#d98a1c;--peach:#f07a4a;--inp:rgba(255,255,255,.95);--goldtxt:#9a5a08;color-scheme:light}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 'Plus Jakarta Sans',system-ui,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+body{padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0);min-height:100vh}
+.aura{position:fixed;inset:0;z-index:-1;background:radial-gradient(640px 420px at 12% -6%,rgba(20,184,166,.30),transparent 70%),radial-gradient(520px 420px at 92% 8%,rgba(99,102,241,.26),transparent 70%),radial-gradient(560px 520px at 60% 112%,rgba(255,157,114,.16),transparent 70%)}
+:root[data-theme="light"] .aura{background:radial-gradient(640px 420px at 12% -6%,rgba(20,184,166,.20),transparent 70%),radial-gradient(520px 420px at 92% 8%,rgba(99,102,241,.14),transparent 70%),radial-gradient(560px 520px at 60% 112%,rgba(255,157,114,.20),transparent 70%)}
+.w{max-width:1040px;margin:auto;padding:0 18px 48px}
+header{display:flex;align-items:center;gap:14px;padding:26px 0 10px}
+.logo{width:46px;height:46px;border-radius:15px;background:linear-gradient(140deg,var(--gold),var(--peach));display:grid;place-items:center;box-shadow:0 8px 28px rgba(255,157,114,.35);flex:none}
+.logo svg{width:24px;height:24px}
+h1{margin:0;font-size:26px;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+.s{margin:2px 0 0;color:var(--mut);font-size:13.5px}
+.hd{flex:1;min-width:0}
+#th2{width:42px;height:42px;padding:0;border-radius:14px;font-size:18px;background:var(--glass)}
+.g{display:grid;gap:18px;grid-template-columns:minmax(0,1fr);padding:14px 0}
+@media(min-width:920px){.g{grid-template-columns:minmax(0,1fr) 360px}.pv{position:sticky;top:16px;align-self:start}}
+.p{background:var(--glass);border:1px solid var(--line);border-radius:24px;padding:20px;margin-bottom:14px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+h2{margin:0 0 14px;font-size:16px;font-weight:700;letter-spacing:-.01em}
+label{display:block;font-size:12.5px;font-weight:600;color:var(--mut);margin:0 0 6px}
+input[type=text],textarea{width:100%;border:1px solid var(--line);border-radius:14px;padding:11px 13px;font:inherit;background:var(--inp);color:var(--ink)}
+textarea{min-height:120px;resize:vertical}
+input[type=file]{width:100%;color:var(--mut);font:inherit;font-size:13px}
+input[type=file]::file-selector-button{font:inherit;font-weight:700;margin-right:12px;border:1px solid var(--line);background:var(--inp);color:var(--ink);border-radius:12px;padding:9px 14px;cursor:pointer}
+button{font:inherit;font-weight:700;border:1px solid var(--line);background:var(--inp);color:var(--ink);border-radius:14px;padding:10px 16px;cursor:pointer;transition:transform .12s}
+button:active{transform:scale(.97)}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+button.pri{background:linear-gradient(140deg,var(--gold),var(--peach));border:0;color:#2a1500;box-shadow:0 8px 24px rgba(255,157,114,.3)}
+button:disabled{opacity:.5;cursor:not-allowed}
+.th{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.th div{width:64px;height:64px;border-radius:14px;background:#333 center/cover;cursor:pointer;position:relative;border:1px solid var(--line)}
+.th div::after{content:"×";position:absolute;right:5px;top:0;color:#fff;text-shadow:0 0 3px #000;font-size:18px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.tabs button{border-radius:999px;padding:7px 15px;font-size:13px}
+.tabs button.on{background:linear-gradient(140deg,var(--gold),var(--peach));border:0;color:#2a1500}
+.tp{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px;max-height:240px;overflow:auto;padding:2px}
+.tp button{display:flex;align-items:center;gap:8px;text-align:left;font-weight:500;padding:8px 10px;font-size:13px;border-radius:12px}
+.tp button.on{border-color:var(--gold);box-shadow:inset 0 0 0 1px var(--gold);color:var(--goldtxt);font-weight:700}
+.sw{width:18px;height:18px;border-radius:50%;flex:none}
+.fr{border-radius:34px;padding:9px;background:linear-gradient(160deg,rgba(255,255,255,.18),rgba(255,255,255,.04));border:1px solid var(--line);box-shadow:0 24px 60px rgba(0,0,0,.35)}
+canvas{width:100%;aspect-ratio:9/16;border-radius:26px;background:#000;display:block}
+.row{display:flex;gap:8px;margin-top:12px}.row button{flex:1}
+#st{color:var(--mut);font-size:13px;margin-top:10px;min-height:20px}
+small{color:var(--mut);font-size:12.5px}
+@media(prefers-reduced-motion:reduce){button{transition:none}}
+</style></head><body><div class="aura"></div><div class="w">
+<header><div class="logo"><svg viewBox="0 0 24 24" fill="#2a1500"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg></div><div class="hd"><h1>Studio Video Affiliate</h1><p class="s">Gambar produk + voice over jadi video 9:16, langsung di browser.</p></div><button id="th2" aria-label="Ganti tema">◐</button></header>
+<div class="g"><div>
+<div class="p"><h2>1. Gambar produk</h2><input id="im" type="file" accept="image/*" multiple><div class="th" id="th"></div><small>Klik gambar kecil untuk menghapusnya. Tiap gambar tampil bergantian sepanjang voice over.</small></div>
+<div class="p"><h2>2. Voice over</h2><input id="au" type="file" accept="audio/*"><small id="ad">Belum ada audio.</small></div>
+<div class="p"><h2>3. Subtitle</h2><textarea id="tx" placeholder="Satu baris = satu kalimat. Baris panjang dipecah otomatis per 6 kata, waktunya mengikuti panjang kalimat.">Produk ini bikin pekerjaan rumah jadi lebih cepat
+Bahannya awet dan harganya masuk akal
+Klik keranjang kuning sebelum kehabisan</textarea>
+<div style="margin-top:10px"><label for="cta"><small>Teks tombol di bagian atas (opsional)</small></label><input id="cta" type="text" value="Klik keranjang kuning" maxlength="40"></div></div>
+<div class="p"><h2>4. Gaya video</h2><div class="tabs" id="tb"></div><div class="tp" id="tp"></div><div class="row"><button id="rn">Acak gaya</button></div></div>
+</div>
+<div class="pv"><div class="fr"><canvas id="cv" width="720" height="1280"></canvas></div>
+<div class="row"><button id="pl">Putar pratinjau</button><button id="mk" class="pri">Buat video</button></div>
+<div id="st"></div></div></div></div>
+<script>
+const W=720,H=1280,$=id=>document.getElementById(id),cv=$('cv'),cx=cv.getContext('2d');
+const MOT=['Zoom in','Zoom out','Geser kiri','Geser kanan','Handheld','Pop','Slide up','Miring'];
+const LAY=['Review','UGC','Unboxing','Promo'];
+const PAL=[['#1b1f3b','#6c4bff','#ff3d6e'],['#ff8a00','#ffd23f','#d7263d'],['#0f766e','#a7f3d0','#f59e0b'],['#111827','#374151','#22d3ee'],['#be185d','#fbcfe8','#7c3aed'],['#1d4ed8','#bfdbfe','#f97316']];
+// 4 layout x 8 gerak x 6 warna = 192 gaya, 4 gaya subtitle bergantian
+const TPL=[];LAY.forEach((_,l)=>MOT.forEach((_,m)=>PAL.forEach((_,p)=>TPL.push({l,m,p,c:(m+p)%4,n:LAY[l]+' '+MOT[m]+' '+(p+1)}))));
+let imgs=[],buf=null,sel=0,cat=0,caps=[],AC=null,busy=false,stopFlag=false;
+const eo=x=>1-Math.pow(1-x,3),bk=x=>1+2.70158*Math.pow(x-1,3)+1.70158*Math.pow(x-1,2);
+function rr(x,y,w,h,r){cx.beginPath();r=Math.min(r,w/2,h/2);cx.moveTo(x+r,y);cx.arcTo(x+w,y,x+w,y+h,r);cx.arcTo(x+w,y+h,x,y+h,r);cx.arcTo(x,y+h,x,y,r);cx.arcTo(x,y,x+w,y,r);cx.closePath()}
+function cover(im,x,y,w,h,r,z,ox,oy){cx.save();rr(x,y,w,h,r);cx.clip();const s=Math.max(w/im.width,h/im.height)*z,iw=im.width*s,ih=im.height*s;cx.drawImage(im,x+(w-iw)/2+ox*w,y+(h-ih)/2+oy*h,iw,ih);cx.restore()}
+function wrap(s,mw){const o=[];let l='';for(const x of s.split(' ')){const t=l?l+' '+x:x;if(cx.measureText(t).width>mw&&l){o.push(l);l=x}else l=t}o.push(l);return o}
+function caption(s,yb,c,ac){if(!s)return;cx.font='800 46px "Plus Jakarta Sans",sans-serif';cx.textAlign='center';cx.textBaseline='middle';cx.lineJoin='round';
+ const L=wrap(s,W*.84),lh=62,y0=yb-L.length*lh;
+ if(c>0){const bw=Math.max(...L.map(t=>cx.measureText(t).width))+56;cx.fillStyle=c==1?'rgba(0,0,0,.7)':c==2?ac:'#ffe14d';rr((W-bw)/2,y0-6,bw,L.length*lh+12,22);cx.fill()}
+ L.forEach((t,i)=>{const y=y0+lh*i+lh/2;if(c==0){cx.lineWidth=12;cx.strokeStyle='#000';cx.strokeText(t,W/2,y)}cx.fillStyle=c==3?'#111':'#fff';cx.fillText(t,W/2,y)})}
+function capAt(t,d){if(!caps.length)return'';const tot=caps.reduce((a,s)=>a+s.length+4,0);let a=0;for(const s of caps){const k=(s.length+4)/tot*d;if(t<a+k)return s;a+=k}return caps[caps.length-1]}
+function draw(t,d){const T=TPL[sel],P=PAL[T.p],{l,m}=T;
+ const g=cx.createLinearGradient(0,0,W,H);g.addColorStop(0,P[0]);g.addColorStop(1,P[1]);cx.fillStyle=g;cx.fillRect(0,0,W,H);
+ if(imgs.length){const sl=d/imgs.length,i=Math.min(imgs.length-1,Math.floor(t/sl)),lt=t-i*sl,u=Math.min(1,lt/sl),e=eo(Math.min(1,lt/.45));
+  let z=1,ox=0,oy=0,sc=1,rot=0,ty=0;const al=Math.min(1,lt/.25);
+  if(m==0)z=1+.18*u;else if(m==1)z=1.18-.18*u;else if(m==2){z=1.15;ox=.04-.08*u}else if(m==3){z=1.15;ox=-.04+.08*u}
+  else if(m==4){z=1.1;ox=Math.sin(t*6)*.012;oy=Math.cos(t*4.3)*.012;rot=Math.sin(t*3)*.012}
+  else if(m==5)sc=.6+.4*bk(Math.min(1,lt/.4));else if(m==6)ty=(1-e)*H*.25;else rot=-.05+.1*u;
+  if(l==0&&(m==4||m==7))sc*=1.12;
+  const R=[[0,0,W,H],[60,140,600,860],[105,195,510,640],[0,0,W,830]][l],fx=l==0?W/2:W/2,fy=l==0?H/2:l==3?415:l==1?570:430;
+  cx.save();cx.globalAlpha=al;cx.translate(fx,fy+ty);cx.rotate(rot+(l==2?-.04:0));cx.scale(sc,sc);cx.translate(-fx,-fy);
+  if(l==1){cx.shadowColor='rgba(0,0,0,.45)';cx.shadowBlur=40;cx.fillStyle='#0b0b10';rr(48,128,624,884,64);cx.fill();cx.shadowBlur=0;cover(imgs[i],R[0],R[1],R[2],R[3],50,z,ox,oy);cx.fillStyle='#0b0b10';rr(W/2-50,142,100,18,9);cx.fill()}
+  else if(l==2){cx.shadowColor='rgba(0,0,0,.4)';cx.shadowBlur=36;cx.fillStyle='#fff';rr(80,170,560,780,10);cx.fill();cx.shadowBlur=0;cover(imgs[i],R[0],R[1],R[2],R[3],4,z,ox,oy)}
+  else cover(imgs[i],R[0],R[1],R[2],R[3],0,z,ox,oy);
+  cx.restore();
+  if(l==3){cx.fillStyle='rgba(0,0,0,.28)';cx.fillRect(0,830,W,H-830)}}
+ const ct=$('cta').value.trim();
+ if(ct){cx.save();cx.font='700 30px "Plus Jakarta Sans",sans-serif';const w=cx.measureText(ct).width+64,k=1+.03*Math.sin(t*6);cx.translate(W/2,78);cx.scale(k,k);cx.fillStyle=P[2];rr(-w/2,-30,w,60,30);cx.fill();cx.fillStyle='#fff';cx.textAlign='center';cx.textBaseline='middle';cx.fillText(ct,0,2);cx.restore()}
+ caption(capAt(t,d),l==0?H-220:H-130,T.c,P[2])}
+function still(){const d=buf?buf.duration:12;draw(imgs.length?d/imgs.length*.6:0,d)}
+function rebuildCaps(){caps=[];$('tx').value.split('\n').forEach(l=>{const w=l.trim().split(/\s+/).filter(Boolean);for(let i=0;i<w.length;i+=6)caps.push(w.slice(i,i+6).join(' '))})}
+function renderTpl(){$('tb').innerHTML='';LAY.forEach((n,i)=>{const b=document.createElement('button');b.textContent=n;b.className=i==cat?'on':'';b.onclick=()=>{cat=i;renderTpl()};$('tb').append(b)});
+ $('tp').innerHTML='';TPL.forEach((T,i)=>{if(T.l!=cat)return;const b=document.createElement('button');b.className=i==sel?'on':'';b.innerHTML='<span class="sw" style="background:linear-gradient(135deg,'+PAL[T.p][0]+','+PAL[T.p][2]+')"></span>'+T.n.replace(LAY[T.l]+' ','');b.onclick=()=>{sel=i;renderTpl();still()};$('tp').append(b)})}
+$('im').onchange=async e=>{for(const f of e.target.files)imgs.push(await createImageBitmap(f));e.target.value='';thumbs();still()};
+function thumbs(){$('th').innerHTML='';imgs.forEach((im,i)=>{const d=document.createElement('div'),c=document.createElement('canvas');c.width=c.height=64;c.getContext('2d').drawImage(im,0,0,64,64);d.style.backgroundImage='url('+c.toDataURL()+')';d.onclick=()=>{imgs.splice(i,1);thumbs();still()};$('th').append(d)})}
+$('au').onchange=async e=>{const f=e.target.files[0];if(!f)return;AC=AC||new AudioContext();try{buf=await AC.decodeAudioData(await f.arrayBuffer());$('ad').textContent='Durasi voice over: '+buf.duration.toFixed(1)+' detik'}catch(x){buf=null;$('ad').textContent='File audio tidak bisa dibaca. Coba MP3, WAV, atau M4A.'}still()};
+$('tx').oninput=()=>{rebuildCaps();still()};$('cta').oninput=still;
+$('rn').onclick=()=>{sel=Math.floor(Math.random()*TPL.length);cat=TPL[sel].l;renderTpl();still()};
+async function run(rec){
+ if(busy){stopFlag=true;return}
+ if(!imgs.length||!buf){$('st').textContent='Tambahkan minimal satu gambar dan satu voice over dulu.';return}
+ busy=true;stopFlag=false;$('mk').disabled=rec?true:false;$('pl').textContent='Hentikan';await AC.resume();
+ const src=AC.createBufferSource(),dest=AC.createMediaStreamDestination(),d=buf.duration;src.buffer=buf;src.connect(dest);if(!rec)src.connect(AC.destination);
+ let mr,ch=[],mt='';
+ if(rec){const st=cv.captureStream(30);dest.stream.getAudioTracks().forEach(t=>st.addTrack(t));
+  mt=['video/mp4;codecs=avc1,mp4a.40.2','video/mp4','video/webm;codecs=vp9,opus','video/webm'].find(t=>MediaRecorder.isTypeSupported(t))||'';
+  mr=new MediaRecorder(st,mt?{mimeType:mt,videoBitsPerSecond:5e6}:{videoBitsPerSecond:5e6});mr.ondataavailable=e=>e.data.size&&ch.push(e.data);mr.start(500)}
+ src.start();const t0=performance.now();
+ await new Promise(ok=>{(function f(){const t=(performance.now()-t0)/1000;draw(Math.min(t,d),d);$('st').textContent=(rec?'Merekam ':'Memutar ')+Math.min(t,d).toFixed(0)+' / '+d.toFixed(0)+' detik. Jangan tutup atau pindah tab.';
+  if(t<d+.3&&!stopFlag)requestAnimationFrame(f);else ok()})()});
+ try{src.stop()}catch(x){}
+ if(rec&&mr){await new Promise(ok=>{mr.onstop=ok;mr.stop()});if(!stopFlag){const b=new Blob(ch,{type:mt||'video/webm'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='video-affiliate.'+((mt||'').includes('mp4')?'mp4':'webm');a.click();$('st').textContent='Selesai. Video sudah diunduh.'}else $('st').textContent='Dihentikan.'}
+ else $('st').textContent='';
+ busy=false;$('mk').disabled=false;$('pl').textContent='Putar pratinjau';still()}
+$('pl').onclick=()=>run(false);$('mk').onclick=()=>run(true);
+$("th2").onclick=()=>{const r=document.documentElement,n=r.dataset.theme=="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("av-theme",n)}catch(e){}};
+rebuildCaps();renderTpl();document.fonts.load('800 46px "Plus Jakarta Sans"').then(still,still);still();
+</script></body></html>
