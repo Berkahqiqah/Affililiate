@@ -25,7 +25,9 @@ h1{margin:0;font-size:26px;font-weight:800;letter-spacing:-.03em;line-height:1.1
 .p{background:var(--glass);border:1px solid var(--line);border-radius:24px;padding:20px;margin-bottom:14px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
 h2{margin:0 0 14px;font-size:16px;font-weight:700;letter-spacing:-.01em}
 label{display:block;font-size:12.5px;font-weight:600;color:var(--mut);margin:0 0 6px}
-input[type=text],textarea{width:100%;border:1px solid var(--line);border-radius:14px;padding:11px 13px;font:inherit;background:var(--inp);color:var(--ink)}
+[hidden]{display:none!important}
+input[type=text],input[type=password],select,textarea{width:100%;border:1px solid var(--line);border-radius:14px;padding:11px 13px;font:inherit;background:var(--inp);color:var(--ink)}
+select{appearance:auto}
 textarea{min-height:120px;resize:vertical}
 input[type=file]{width:100%;color:var(--mut);font:inherit;font-size:13px}
 input[type=file]::file-selector-button{font:inherit;font-weight:700;margin-right:12px;border:1px solid var(--line);background:var(--inp);color:var(--ink);border-radius:12px;padding:9px 14px;cursor:pointer}
@@ -48,18 +50,23 @@ button:disabled{opacity:.5;cursor:not-allowed}
 canvas{width:100%;aspect-ratio:9/16;border-radius:26px;background:#000;display:block}
 .row{display:flex;gap:8px;margin-top:12px}.row button{flex:1}
 #st{color:var(--mut);font-size:13px;margin-top:10px;min-height:20px}
+summary{cursor:pointer}
 small{color:var(--mut);font-size:12.5px}
 @media(prefers-reduced-motion:reduce){button{transition:none}}
 </style></head><body><div class="aura"></div><div class="w">
 <header><div class="logo"><svg viewBox="0 0 24 24" fill="#2a1500"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg></div><div class="hd"><h1>Studio Video Affiliate</h1><p class="s">Gambar produk + voice over jadi video 9:16, langsung di browser.</p></div><button id="th2" aria-label="Ganti tema">◐</button></header>
 <div class="g"><div>
 <div class="p"><h2>1. Gambar produk</h2><input id="im" type="file" accept="image/*" multiple><div class="th" id="th"></div><small>Klik gambar kecil untuk menghapusnya. Tiap gambar tampil bergantian sepanjang voice over.</small></div>
-<div class="p"><h2>2. Voice over</h2><input id="au" type="file" accept="audio/*"><small id="ad">Belum ada audio.</small></div>
-<div class="p"><h2>3. Subtitle</h2><textarea id="tx" placeholder="Satu baris = satu kalimat. Baris panjang dipecah otomatis per 6 kata, waktunya mengikuti panjang kalimat.">Produk ini bikin pekerjaan rumah jadi lebih cepat
+<div class="p"><h2>2. Google AI Studio (opsional)</h2><label for="key">API key</label><input id="key" type="password" autocomplete="off" placeholder="Tempel API key dari aistudio.google.com/apikey"><label style="display:flex;gap:8px;align-items:center;margin-top:10px;font-weight:500"><input id="rk" type="checkbox">Ingat key di browser ini</label><details style="margin-top:8px"><summary><small>Nama model (ubah jika Google mengganti nama)</small></summary><label for="mt" style="margin-top:8px">Model suara</label><input id="mt" type="text" value="gemini-3.1-flash-tts-preview"><label for="mx" style="margin-top:8px">Model teks</label><input id="mx" type="text" value="gemini-2.5-flash"></details><small>Key dikirim langsung dari browser ini ke Google, tidak lewat server lain.</small></div>
+<div class="p"><h2>3. Voice over</h2><div class="tabs"><button id="v1" class="on">Upload</button><button id="v2">Suara AI</button></div>
+<div id="vu"><input id="au" type="file" accept="audio/*"><button id="tr" style="margin-top:10px">Buat subtitle dari audio (AI)</button></div>
+<div id="vg" hidden><label for="pd">Deskripsi produk</label><input id="pd" type="text" placeholder="Contoh: tumbler stainless 1 liter, tahan panas 12 jam"><div class="row"><button id="wr">Tulis naskah dengan AI</button></div><label for="nk" style="margin-top:12px">Naskah voice over (boleh diedit)</label><textarea id="nk" placeholder="Ketik sendiri atau buat dengan AI. Satu baris = satu kalimat."></textarea><label for="vn" style="margin-top:12px">Suara</label><select id="vn"><option>Kore</option><option>Puck</option><option>Charon</option><option>Zephyr</option><option>Aoede</option><option>Fenrir</option><option>Leda</option><option>Orus</option></select><label for="sg" style="margin-top:12px">Gaya bicara</label><input id="sg" type="text" value="ceria dan meyakinkan"><div class="row"><button id="tt" class="pri">Buat suara dengan AI</button></div></div>
+<small id="ad">Belum ada audio.</small></div>
+<div class="p"><h2>4. Subtitle</h2><textarea id="tx" placeholder="Satu baris = satu kalimat. Baris panjang dipecah otomatis per 6 kata, waktunya mengikuti panjang kalimat.">Produk ini bikin pekerjaan rumah jadi lebih cepat
 Bahannya awet dan harganya masuk akal
 Klik keranjang kuning sebelum kehabisan</textarea>
 <div style="margin-top:10px"><label for="cta"><small>Teks tombol di bagian atas (opsional)</small></label><input id="cta" type="text" value="Klik keranjang kuning" maxlength="40"></div></div>
-<div class="p"><h2>4. Gaya video</h2><div class="tabs" id="tb"></div><div class="tp" id="tp"></div><div class="row"><button id="rn">Acak gaya</button></div></div>
+<div class="p"><h2>5. Gaya video</h2><div class="tabs" id="tb"></div><div class="tp" id="tp"></div><div class="row"><button id="rn">Acak gaya</button></div></div>
 </div>
 <div class="pv"><div class="fr"><canvas id="cv" width="720" height="1280"></canvas></div>
 <div class="row"><button id="pl">Putar pratinjau</button><button id="mk" class="pri">Buat video</button></div>
@@ -71,7 +78,7 @@ const LAY=['Review','UGC','Unboxing','Promo'];
 const PAL=[['#1b1f3b','#6c4bff','#ff3d6e'],['#ff8a00','#ffd23f','#d7263d'],['#0f766e','#a7f3d0','#f59e0b'],['#111827','#374151','#22d3ee'],['#be185d','#fbcfe8','#7c3aed'],['#1d4ed8','#bfdbfe','#f97316']];
 // 4 layout x 8 gerak x 6 warna = 192 gaya, 4 gaya subtitle bergantian
 const TPL=[];LAY.forEach((_,l)=>MOT.forEach((_,m)=>PAL.forEach((_,p)=>TPL.push({l,m,p,c:(m+p)%4,n:LAY[l]+' '+MOT[m]+' '+(p+1)}))));
-let imgs=[],buf=null,sel=0,cat=0,caps=[],AC=null,busy=false,stopFlag=false;
+let upFile=null,imgs=[],buf=null,sel=0,cat=0,caps=[],AC=null,busy=false,stopFlag=false;
 const eo=x=>1-Math.pow(1-x,3),bk=x=>1+2.70158*Math.pow(x-1,3)+1.70158*Math.pow(x-1,2);
 function rr(x,y,w,h,r){cx.beginPath();r=Math.min(r,w/2,h/2);cx.moveTo(x+r,y);cx.arcTo(x+w,y,x+w,y+h,r);cx.arcTo(x+w,y+h,x,y+h,r);cx.arcTo(x,y+h,x,y,r);cx.arcTo(x,y,x+w,y,r);cx.closePath()}
 function cover(im,x,y,w,h,r,z,ox,oy){cx.save();rr(x,y,w,h,r);cx.clip();const s=Math.max(w/im.width,h/im.height)*z,iw=im.width*s,ih=im.height*s;cx.drawImage(im,x+(w-iw)/2+ox*w,y+(h-ih)/2+oy*h,iw,ih);cx.restore()}
@@ -105,7 +112,7 @@ function renderTpl(){$('tb').innerHTML='';LAY.forEach((n,i)=>{const b=document.c
  $('tp').innerHTML='';TPL.forEach((T,i)=>{if(T.l!=cat)return;const b=document.createElement('button');b.className=i==sel?'on':'';b.innerHTML='<span class="sw" style="background:linear-gradient(135deg,'+PAL[T.p][0]+','+PAL[T.p][2]+')"></span>'+T.n.replace(LAY[T.l]+' ','');b.onclick=()=>{sel=i;renderTpl();still()};$('tp').append(b)})}
 $('im').onchange=async e=>{for(const f of e.target.files)imgs.push(await createImageBitmap(f));e.target.value='';thumbs();still()};
 function thumbs(){$('th').innerHTML='';imgs.forEach((im,i)=>{const d=document.createElement('div'),c=document.createElement('canvas');c.width=c.height=64;c.getContext('2d').drawImage(im,0,0,64,64);d.style.backgroundImage='url('+c.toDataURL()+')';d.onclick=()=>{imgs.splice(i,1);thumbs();still()};$('th').append(d)})}
-$('au').onchange=async e=>{const f=e.target.files[0];if(!f)return;AC=AC||new AudioContext();try{buf=await AC.decodeAudioData(await f.arrayBuffer());$('ad').textContent='Durasi voice over: '+buf.duration.toFixed(1)+' detik'}catch(x){buf=null;$('ad').textContent='File audio tidak bisa dibaca. Coba MP3, WAV, atau M4A.'}still()};
+$('au').onchange=async e=>{const f=e.target.files[0];if(!f)return;upFile=f;AC=AC||new AudioContext();try{buf=await AC.decodeAudioData(await f.arrayBuffer());$('ad').textContent='Durasi voice over: '+buf.duration.toFixed(1)+' detik'}catch(x){buf=null;$('ad').textContent='File audio tidak bisa dibaca. Coba MP3, WAV, atau M4A.'}still()};
 $('tx').oninput=()=>{rebuildCaps();still()};$('cta').oninput=still;
 $('rn').onclick=()=>{sel=Math.floor(Math.random()*TPL.length);cat=TPL[sel].l;renderTpl();still()};
 async function run(rec){
@@ -125,6 +132,28 @@ async function run(rec){
  else $('st').textContent='';
  busy=false;$('mk').disabled=false;$('pl').textContent='Putar pratinjau';still()}
 $('pl').onclick=()=>run(false);$('mk').onclick=()=>run(true);
+
+async function gem(model,body){const k=$('key').value.trim();if(!k)throw new Error('Isi API key Google AI Studio dulu.');const r=await fetch('https://generativelanguage.googleapis.com/v1beta/models/'+model+':generateContent',{method:'POST',headers:{'content-type':'application/json','x-goog-api-key':k},body:JSON.stringify(body)});const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error((j.error&&j.error.message)||'HTTP '+r.status);return j}
+const gtxt=j=>((j.candidates&&j.candidates[0]&&j.candidates[0].content.parts)||[]).map(p=>p.text||'').join('').trim();
+async function ai(b,msg,fn){b.disabled=true;$('st').textContent=msg;try{await fn();$('st').textContent='Selesai.'}catch(e){$('st').textContent='Gagal: '+e.message}b.disabled=false}
+function setSub(t){$('tx').value=t;rebuildCaps();still()}
+function saveKey(){try{if($('rk').checked)localStorage.setItem('av-key',$('key').value.trim());else localStorage.removeItem('av-key')}catch(e){}}
+try{const k=localStorage.getItem('av-key');if(k){$('key').value=k;$('rk').checked=true}}catch(e){}
+$('key').onchange=$('rk').onchange=saveKey;
+function tab(g){$('vu').hidden=g;$('vg').hidden=!g;$('v1').className=g?'':'on';$('v2').className=g?'on':''}
+$('v1').onclick=()=>tab(0);$('v2').onclick=()=>tab(1);
+$('wr').onclick=()=>ai($('wr'),'AI menulis naskah...',async()=>{const p=$('pd').value.trim();if(!p)throw new Error('Isi deskripsi produk dulu.');
+ const j=await gem($('mx').value.trim(),{contents:[{parts:[{text:'Tulis naskah voice over video affiliate TikTok berbahasa Indonesia, gaya santai dan meyakinkan, 4 sampai 6 kalimat pendek (sekitar 25 detik), untuk produk: '+p+'. Awali dengan hook yang menarik dan tutup dengan ajakan klik keranjang kuning. Hanya kalimatnya, satu per baris, tanpa nomor, tanpa emoji, tanpa tanda kutip.'}]}]});
+ $('nk').value=gtxt(j).replace(/^[-*\s]+/gm,'').trim()});
+$('tt').onclick=()=>ai($('tt'),'AI membuat suara...',async()=>{const t=$('nk').value.trim();if(!t)throw new Error('Isi naskah dulu.');const sg=$('sg').value.trim();
+ const j=await gem($('mt').value.trim(),{contents:[{parts:[{text:(sg?'Ucapkan dengan gaya '+sg+': ':'')+t.replace(/\n+/g,' ')}]}],generationConfig:{responseModalities:['AUDIO'],speechConfig:{voiceConfig:{prebuiltVoiceConfig:{voiceName:$('vn').value}}}}});
+ const pt=((j.candidates&&j.candidates[0]&&j.candidates[0].content.parts)||[]).find(p=>p.inlineData);if(!pt)throw new Error('Model tidak mengembalikan audio. Periksa nama model suara.');
+ const rate=+((/rate=(\d+)/.exec(pt.inlineData.mimeType||'')||[0,24000])[1]),bin=atob(pt.inlineData.data),n=bin.length>>1,f=new Float32Array(n);
+ for(let i=0;i<n;i++){let v=bin.charCodeAt(2*i)|bin.charCodeAt(2*i+1)<<8;if(v>32767)v-=65536;f[i]=v/32768}
+ AC=AC||new AudioContext();buf=AC.createBuffer(1,n,rate);buf.copyToChannel(f,0);$('ad').textContent='Suara AI siap, durasi '+buf.duration.toFixed(1)+' detik. Subtitle diisi dari naskah.';setSub(t)});
+$('tr').onclick=()=>ai($('tr'),'AI mentranskrip audio...',async()=>{if(!upFile)throw new Error('Upload audio dulu.');
+ const data=await new Promise(ok=>{const r=new FileReader();r.onload=()=>ok(r.result.split(',')[1]);r.readAsDataURL(upFile)});
+ const j=await gem($('mx').value.trim(),{contents:[{parts:[{inlineData:{mimeType:upFile.type||'audio/mpeg',data}},{text:'Transkripsikan audio ini apa adanya dalam bahasa aslinya. Pecah menjadi kalimat pendek, satu kalimat per baris. Hanya teks, tanpa nomor, tanpa penjelasan.'}]}]});setSub(gtxt(j))});
 $("th2").onclick=()=>{const r=document.documentElement,n=r.dataset.theme=="dark"?"light":"dark";r.dataset.theme=n;try{localStorage.setItem("av-theme",n)}catch(e){}};
 rebuildCaps();renderTpl();document.fonts.load('800 46px "Plus Jakarta Sans"').then(still,still);still();
 </script></body></html>
